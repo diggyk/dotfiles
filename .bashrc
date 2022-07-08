@@ -8,3 +8,8 @@ alias svcdesc="kubectl describe svc"
 alias pullservices="cd ~/lwcode; git clone git@github.com:lacework/services"
 alias gitbranchclean='git fetch -p && for branch in $(git branch -vv | grep ": gone]" | awk "{ print \$1 }"); do echo "Deleting branch $branch"; git branch -d $branch; done'
 . "$HOME/.cargo/env"
+
+# change directories
+function cds() {
+	cd ~/lwcode/services/$1
+}
