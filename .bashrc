@@ -20,3 +20,4 @@ export NVM_DIR="$HOME/.nvm"
 
 
 alias tup="tmux new-session -A -s main"
+alias k="kubectl"
