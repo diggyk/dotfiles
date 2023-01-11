@@ -21,3 +21,5 @@ export NVM_DIR="$HOME/.nvm"
 
 alias k="kubectl"
 alias tup="tmux -CC new -A -s tmssh"
+
+alias bazelrepin="CARGO_BAZEL_REPIN=1 bazel sync --only=crate_index"
