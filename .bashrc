@@ -19,5 +19,5 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
-alias tup="tmux new-session -A -s main"
 alias k="kubectl"
+alias tup="tmux -CC new -A -s tmssh"
