@@ -13,7 +13,9 @@ alias gitbranchclean='git fetch -p && for branch in $(git branch -vv | grep ": g
 function cds() {
 	cd ~/lwcode/services/$1
 }
-alias cdc="cd ~/lwcode"
+function cdc() {
+	cd ~/lwcode/$1
+}
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
