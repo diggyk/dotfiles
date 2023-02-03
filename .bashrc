@@ -26,3 +26,4 @@ alias k="kubectl"
 alias tup="tmux -CC new -A -s tmssh"
 
 alias bazelrepin="CARGO_BAZEL_REPIN=1 bazel sync --only=crate_index"
+alias bazelgen="bazel run @rules_rust//tools/rust_analyzer:gen_rust_project"
