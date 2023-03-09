@@ -25,5 +25,10 @@ export NVM_DIR="$HOME/.nvm"
 alias k="kubectl"
 alias tup="tmux -CC new -A -s tmssh"
 
+alias tshlogin="tsh login --proxy lacework.teleport.sh:443 --auth lacework_okta"
+
 alias bazelrepin="CARGO_BAZEL_REPIN=1 bazel sync --only=crate_index"
 alias bazelgen="bazel run @rules_rust//tools/rust_analyzer:gen_rust_project"
+
+export PATH=$PATH:~/bin
+export ETCDCTL_API=3
