@@ -32,3 +32,5 @@ alias bazelgen="bazel run @rules_rust//tools/rust_analyzer:gen_rust_project"
 
 export PATH=$PATH:~/bin
 export ETCDCTL_API=3
+
+export PATH=$HOME/.istioctl/bin:$PATH
