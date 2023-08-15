@@ -1,3 +1,9 @@
 #!/bin/bash
 
-npm install -g yarn
+echo "Installing yarn"
+sudo npm install -g yarn
+
+echo "Installing MYSQL"
+sudo apt-get install libmysqlclient21
+
+export AWS_PROFILE=devtest
