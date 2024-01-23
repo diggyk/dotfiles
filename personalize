@@ -4,6 +4,21 @@ echo "Installing yarn"
 sudo npm install -g yarn
 
 echo "Installing MYSQL"
-sudo apt-get install libmysqlclient21
+curl -fsSL https://debian.neo4j.com/neotechnology.gpg.key |sudo gpg --dearmor -o /usr/share/keyrings/neo4j.gpg
+echo "deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable 4.1" | sudo tee -a /etc/apt/sources.list.d/neo4j.list
+DEBIAN_FRONTEND=noninteractive sudo add-apt-repository ppa:cleishm/neo4j -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get install neo4j-client libneo4j-client-dev -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get upgrade -y
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libmysqlclient21 libmysqlclient-dev
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y protoc-gen-go
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y net-tools atop
 
-export AWS_PROFILE=devtest
+git config --global pager.branch false
+
+export OMSHOST=https://oms.services-internal.dev.lacework.engineering
+
+go env -w GOPRIVATE=github.com/lacework-dev/*
+
+# used for vuln jira connector work
+sudo  snap install ngrok
