@@ -1,21 +1,36 @@
 #!/bin/bash
-
+echo "Personlize script running...."
 echo "Installing yarn"
 sudo npm install -g yarn
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
-DEBIAN_FRONTEND=noninteractive sudo apt-get upgrade -y
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libmysqlclient21 libmysqlclient-dev
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y protoc-gen-go
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y net-tools atop
+export NEEDRESTART_MODE=a
+export DEBIAN_FRONTEND=noninteractive
+
+echo "Upgrading packages"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get update -y
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get upgrade -y
+
+echo "Installing MySQL stuff"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libmysqlclient21 libmysqlclient-dev
+
+echo "Installing protoc"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y protoc-gen-go
+
+echo "Installing additional tools"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y net-tools atop
+
+echo "Installing PostGRES"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y postgresql postgresql-client
 
 git config --global pager.branch false
 
-go env -w GOPRIVATE=github.com/lacework-dev/*
+/opt/goenv/shims/go env -w GOPRIVATE="github.com/lacework-dev/*"
 
 # used for vuln jira connector work
+echo "Install NGrok"
 sudo  snap install ngrok
 
+echo "Install hurl"
 cargo install hurl
 
 
