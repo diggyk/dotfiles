@@ -1,5 +1,5 @@
-#!/bin/bash
-echo "Personlize script running...."
+#!/usr/bin/bash
+echo "Personalize script running...."
 echo "Installing yarn"
 sudo npm install -g yarn
 
@@ -22,6 +22,9 @@ NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y net-to
 echo "Installing PostGRES"
 NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y postgresql postgresql-client
 
+echo "Installing Hyperscan"
+NEEDRESTART_MODE=a DEBIAN_FRONTEND=noninteractive sudo apt-get install -y libhyperscan-dev
+
 git config --global pager.branch false
 
 /opt/goenv/shims/go env -w GOPRIVATE="github.com/lacework-dev/*"
@@ -31,11 +34,11 @@ echo "Install NGrok"
 sudo  snap install ngrok
 
 echo "Install hurl"
-cargo install hurl
+/opt/cargo/bin/cargo install hurl
 
 
 # echo "Installing Neo4J"
-#curl -fsSL https://debian.neo4j.com/neotechnology.gpg.key |sudo gpg --dearmor -o /usr/share/keyrings/neo4j.gpg
-#echo "deb [signed-by=/usr/share/keyrings/neo4j.gpg] https://debian.neo4j.com stable 4.1" | sudo tee -a /etc/apt/sources.list.d/neo4j.list
-#DEBIAN_FRONTEND=noninteractive sudo add-apt-repository ppa:cleishm/neo4j -y
-#DEBIAN_FRONTEND=noninteractive sudo apt-get install neo4j-client libneo4j-client-dev -y
+wget -O - https://debian.neo4j.com/neotechnology.gpg.key | sudo apt-key add -
+echo 'deb https://debian.neo4j.com stable 4.4' | sudo tee /etc/apt/sources.list.d/neo4j.list
+sudo apt-get update
+DEBIAN_FRONTEND=noninteractive sudo apt-get install neo4j-client libneo4j-client-dev -y
